@@ -5,7 +5,6 @@ export const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${Theme.colors.background};
 `;
 
 export const ImageBackGround = styled.Image`
@@ -13,6 +12,10 @@ export const ImageBackGround = styled.Image`
   height: 360px;
 `;
 
+export const Content = styled.View`
+  margin-top: -40px;
+  padding: 0 50px;
+`;
 export const Title = styled.Text`
   color: ${Theme.colors.heading};
   text-align: center;
@@ -25,9 +28,4 @@ export const Subtitles = styled.Text`
   font-size: 15px;
   text-align: center;
   margin-bottom: 64px;
-`;
-
-export const Content = styled.View`
-  margin-top: -40px;
-  padding: 0 50px;
 `;

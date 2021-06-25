@@ -7,7 +7,8 @@ export const ContentImg = styled.View`
   height: 56px;
   justify-content: center;
   align-items: center;
-  border-color: ${Theme.colors.line};
+  border-color: ${Theme.colors.overlay};
+  border-right-width: 1px;
 `;
 
 export const Title = styled.Text`
@@ -16,4 +17,6 @@ export const Title = styled.Text`
   font-size: 15px;
   flex-direction: row;
   text-align: center;
+  font-family: ${Theme.fonts.text500};
+  line-height: 25px;
 `;
