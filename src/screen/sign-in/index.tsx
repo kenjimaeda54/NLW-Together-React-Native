@@ -9,11 +9,9 @@ import ButtonIcon from '../../components/button-icon/button-icon';
 const Sign = () => {
    const navigation = useNavigation()
 
-   const handleSignIn = () =>{
-       
-      navigation.navigate("Home")
+   const handleSignIn = () => navigation.navigate("Home")
 
-   }
+   
 
    return (
       <Container>

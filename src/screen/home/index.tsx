@@ -1,17 +1,19 @@
 
-import React,{useState} from 'react'
-import { View, Text } from 'react-native'
-import { Container, ViewHeader,ViewContent,ListMatch } from "./styles"
-import ButtonAdd from '../../components/button-add'
-import Profile from '../../components/profile'
-import CategorySelected from '../../components/category-select'
-import ListHeader from '../../components/list-header'
-import Appointment from '../../components/appointment'
-import ListSplit from '../../components/list-split'
+import React,{useState} from 'react';
+import { View, Text } from 'react-native';
+import { Container, ViewHeader,ViewContent,ListMatch } from "./styles";
+import { useNavigation } from "@react-navigation/native"
+import ButtonAdd from '../../components/button-add';
+import Profile from '../../components/profile';
+import CategorySelected from '../../components/category-select';
+import ListHeader from '../../components/list-header';
+import Appointment from '../../components/appointment';
+import ListSplit from '../../components/list-split';
 
 
 const HomeScreen = () => {
   const [categorySelected, setCategorySelected] = useState('');
+  const navigation = useNavigation();
 
   const appointments = [
     {
@@ -44,12 +46,16 @@ const HomeScreen = () => {
   const handleCategorySelected = (categoryId:string) =>{
     categoryId === categorySelected? setCategorySelected('') : setCategorySelected(categoryId)
   }
+   
+  const handleAppointmentDetails = () => navigation.navigate("AppointmentDetails");
+  
+  const handleAppointCreate = () => navigation.navigate("AppointmentCreate"); 
 
   return (
     <Container>
       <ViewHeader>
         <Profile />
-        <ButtonAdd rippleColor="#fff" />
+        <ButtonAdd rippleColor="#fff"  onPress={handleAppointCreate} />
       </ViewHeader>
       <CategorySelected 
          setCategory={handleCategorySelected}
@@ -64,7 +70,11 @@ const HomeScreen = () => {
             data={appointments}
             keyExtractor={(item:string | any) => item.id }
             renderItem={({item}:any)   => (
-              <Appointment data={item}/>
+              <Appointment data={item}
+                
+               onPress={handleAppointmentDetails}
+              
+              />
             )}
             ItemSeparatorComponent={()=> <ListSplit /> } 
             showsHorizontalScrollIndicator={false} 

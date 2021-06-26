@@ -3,8 +3,7 @@ import { View, Text } from 'react-native';
 import {Container} from "./style";
 
 const ListSplit = () => (
-    <Container>
-    </Container>
+    <Container />
 );
 
 
