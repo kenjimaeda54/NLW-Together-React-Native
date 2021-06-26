@@ -1,15 +1,15 @@
 import React from 'react';
 import { Image } from 'react-native';
-import {  RectButton,RectButtonProps } from "react-native-gesture-handler"
+import { RectButtonProps } from "react-native-gesture-handler"
 import { ContentImg, Title,Button } from "./styles";
 import Discord from "../../assets/discord.png";
-import { Theme } from '../../global/theme';
+
 
 interface IButtonIcon extends RectButtonProps{
     title:string
 }
 
-const ButtonIcon:React.FC<IButtonIcon> = ({title, ...props}:IButtonIcon):JSX.Element => {
+const ButtonIcon:React.FC<IButtonIcon> = ({title, ...props}:IButtonIcon) => {
 
     return (
 

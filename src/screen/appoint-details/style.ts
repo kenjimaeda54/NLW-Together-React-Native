@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { Theme } from "../../global/theme";
+import { getBottomSpace } from "react-native-iphone-x-helper";
 
 export const BannerIgm = styled.ImageBackground`
   width: 100%;
@@ -31,4 +32,9 @@ export const TextSubTitle = styled.Text`
 export const ListMember = styled.FlatList`
   margin-left: 24px;
   margin-top: 20px;
+`;
+
+export const ViewFooter = styled.View`
+  padding: 20px 24px;
+  margin-bottom: ${getBottomSpace()};
 `;

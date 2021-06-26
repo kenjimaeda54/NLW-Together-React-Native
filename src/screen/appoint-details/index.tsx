@@ -5,10 +5,18 @@ import Banner from "../../assets/banner.png"
 import { BorderlessButton } from "react-native-gesture-handler"
 import { Fontisto  } from "@expo/vector-icons"
 import { Theme } from '../../global/theme';
-import { BannerIgm,ViewContent,TextTitle,TextSubTitle,ListMember} from  "./style"
+import { 
+     BannerIgm,
+     ViewContent,
+     TextTitle,
+     TextSubTitle,
+     ListMember,
+     ViewFooter
+} from  "./style"
 import Member from '../../components/menber';
 import ListHeader from '../../components/list-header';
 import ListSplit from '../../components/list-split';
+import ButtonIcon from '../../components/button-icon/button-icon';
 
 const AppointmentDetails = () => {
   const member =[
@@ -65,7 +73,11 @@ const AppointmentDetails = () => {
               ItemSeparatorComponent={()=> <ListSplit /> }
               showsVerticalScrollIndicator={false}
              />
-         
+             <ViewFooter>
+               <ButtonIcon 
+                  title="Entrar na partida"
+               />
+             </ViewFooter>
 
       </Background>
     )
