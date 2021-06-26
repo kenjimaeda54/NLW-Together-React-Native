@@ -33,7 +33,10 @@ const AppointmentDetails = () => {
       status:"ocupado",
       avatar_url: "https://github.com/kenjimaeda54.png"
      },
-  ]
+      
+  
+   ]
+
 
 
     return (

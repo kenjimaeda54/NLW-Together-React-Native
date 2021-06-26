@@ -25,7 +25,8 @@ const Guilds:React.FC<IGuildsProps> = ({guildSelected}) => {
         name:'Imaginários',
         icon:'img.png',
         owner: true,
-    }
+    },
+  
    ]
 
     return (
@@ -38,7 +39,11 @@ const Guilds:React.FC<IGuildsProps> = ({guildSelected}) => {
             onPress={()=>guildSelected(item)}
             data={item} /> }
            showsVerticalScrollIndicator={false}
-           ItemSeparatorComponent={()=> <ListSplit/> }    
+           ItemSeparatorComponent={()=> <ListSplit/> } 
+           ListHeaderComponent={()=> <ListSplit />  } 
+           contentContainerStyle={{paddingBottom:68,paddingTop:104}}
+           /*aplicando paddingTop minha lista começa com 104  e conforme rola */ 
+           /* some o espaço  */  
         />
       </Container>  
     )

@@ -5,7 +5,6 @@ import { getBottomSpace } from "react-native-iphone-x-helper";
 export const BannerIgm = styled.ImageBackground`
   width: 100%;
   height: 234px;
-  margin-bottom: 30px; /*aqui e para separar o conteúdo do banner da lista abaixo em 30px */
 `;
 
 export const ViewContent = styled.View`

@@ -11,10 +11,9 @@ export const InputContainer = styled(TextInput)`
   font-family: ${Theme.fonts.text400};
   font-size: 13px;
   margin-left: 18px;
-  text-align: center;
   border-width: 1px;
-  border-color: ${Theme.colors.secondary50};
   text-align: left;
   padding-left: 15px;
+  padding-top: 10px;
   margin-top: 10px;
 `;

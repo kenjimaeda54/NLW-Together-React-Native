@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { Theme } from "../../global/theme";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface ITextPlayerProps {
   owner: boolean;
@@ -19,7 +20,7 @@ export const ViewHeader = styled.View`
   width: 100%;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 22px;
+  margin-bottom: 12px;
 `;
 
 export const TextTitle = styled.Text`
@@ -56,6 +57,7 @@ export const TextDate = styled.Text`
   color: ${Theme.colors.heading};
   font-size: 13px;
   margin-left: 7px;
+  margin-right: 24px;
 `;
 
 export const TextPlayer = styled.Text<ITextPlayerProps>`

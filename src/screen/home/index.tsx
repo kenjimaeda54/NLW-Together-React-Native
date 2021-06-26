@@ -1,7 +1,7 @@
 
 import React,{useState} from 'react';
 import { View, Text } from 'react-native';
-import { Container, ViewHeader,ViewContent,ListMatch } from "./styles";
+import { Container, ViewHeader,ListMatch } from "./styles";
 import { useNavigation } from "@react-navigation/native"
 import ButtonAdd from '../../components/button-add';
 import Profile from '../../components/profile';
@@ -40,7 +40,8 @@ const HomeScreen = () => {
       date: '22/06 às 20:40h',
       description: 'É hoje que vamos chegar ao challenger sem perder uma partida da md10'      
     },
-    
+  
+  
   ]
 
   const handleCategorySelected = (categoryId:string) =>{
@@ -61,11 +62,11 @@ const HomeScreen = () => {
          setCategory={handleCategorySelected}
          categorySelected={categorySelected}
       />
-      <ViewContent>
         <ListHeader 
            title="Partidas Agendadas"
            subtitles="6"
         />
+        {/* lista precisa estar fora de uma view para funcionar bem */}
         <ListMatch 
             data={appointments}
             keyExtractor={(item:string | any) => item.id }
@@ -78,9 +79,10 @@ const HomeScreen = () => {
             )}
             ItemSeparatorComponent={()=> <ListSplit /> } 
             showsHorizontalScrollIndicator={false} 
+            contentContainerStyle={{paddingBottom:69}}
+            /* contentContainerStyle aplico estilo interno na lista */
+            showsVerticalScrollIndicator={false}
         /> 
-
-      </ViewContent>
     </Container>
   )
 }

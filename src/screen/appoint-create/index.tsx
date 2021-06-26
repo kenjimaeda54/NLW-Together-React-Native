@@ -33,7 +33,7 @@ const AppointCreate = () => {
   const [guild,setGuild] = useState<IGuildProps>({} as IGuildProps)
   
   const handleCategorySelected = (categoryId:string) =>{
-    categoryId === categorySelected? setCategorySelected('') : setCategorySelected(categoryId)
+     setCategorySelected(categoryId)
   }
   
   const handleOpenGuild = () =>  setOpenModalGuild(true);
@@ -43,6 +43,8 @@ const AppointCreate = () => {
      setOpenModalGuild(false);
     
   }
+
+  const handleCloseModal = () => setOpenModalGuild(false);
    
     return (
     <KeyboardContainer
@@ -91,8 +93,8 @@ const AppointCreate = () => {
             </RectButton>  
           </ViewForm> 
           <ViewTextInput>
-             <View>
-               <TextLabel>
+             <View  >
+               <TextLabel style={{marginBottom:10}} >
                  Dia e mês
                </TextLabel>
                <ViewCalendar>
@@ -108,7 +110,7 @@ const AppointCreate = () => {
                </ViewCalendar>   
              </View>
              <View>
-               <TextLabel>
+               <TextLabel style={{marginBottom:10}} >
                   Hora é minuto
                </TextLabel>
                <ViewCalendar>
@@ -144,7 +146,7 @@ const AppointCreate = () => {
              />
           </ViewFooter> 
        </ScrollView>
-       <ModalView  visible={openModalGuild}   >
+       <ModalView  handleCloseModal={handleCloseModal}  visible={openModalGuild}   >
           <Guilds guildSelected={handleGuildSelected} />
        </ModalView>
      </KeyboardContainer>  

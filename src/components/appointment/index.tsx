@@ -12,20 +12,13 @@ import {
     TextDate,
     ViewPlayerInfo,
     TextPlayer,
+
 } from "./style"
 import { CategoryList } from '../../util/category'
 import GuildIcon from '../guild-icon'
 import CalendarSvg from '../../assets/calendar.svg'
 import Player from "../../assets/player.svg"
-
-
-export interface IGuildProps {
-    id: string;
-    name:string;
-    icon: null;
-    owner: boolean;
- 
-}
+import { IGuildProps } from '../guild'
 
 export interface IAppointmentProps{
     id: string;
@@ -41,14 +34,16 @@ interface Data extends RectButtonProps  {
 }
 
 const Appointment:React.FC<Data> = ({data,...rest}) => {
+   const { secondary50,secondary70  } = Theme.colors;
+
    const [category] =  CategoryList.filter(item=>  item.id === data.category )
    const { owner } = data.guild;
    const {primary, on  } = Theme.colors;
 
     return (
         <RectButton {...rest}  >
-           <Container>
-               <GuildIcon />  
+           <Container> 
+               <GuildIcon /> 
                <ViewContent>
                   <ViewHeader>
                      <TextTitle>

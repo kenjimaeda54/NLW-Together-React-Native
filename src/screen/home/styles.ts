@@ -14,11 +14,6 @@ export const ViewHeader = styled.View`
   margin-bottom: 42px; /* o react-native-safe-area-context ele ja garante area segura no IOS */
 `;
 
-export const ViewContent = styled.View`
-  justify-content: flex-start;
-  margin-top: 20px;
-`;
-
 export const ListMatch = styled.FlatList`
   margin-top: 24px;
   margin-left: 24px;
