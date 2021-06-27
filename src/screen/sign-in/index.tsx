@@ -1,18 +1,32 @@
 import React from 'react';
-import { Container, ImageBackGround, Title, Subtitles,Content } from "./styles";
+import { 
+   Container, 
+   ImageBackGround, 
+   Title, 
+   Subtitles,
+   Content 
+} from "./styles";
 import { Theme } from '../../global/theme';
-import { useNavigation } from '@react-navigation/core';
+import { useAth } from "../../hooks/auth"
 import illustrutation from "../../assets/illustration.png"
 import ButtonIcon from '../../components/button-icon/button-icon';
+import { Alert,ActivityIndicator } from 'react-native';
 
 
 const Sign = () => {
-   const navigation = useNavigation()
+  const {handleSign,loading } = useAth();
+ 
+  const handleSignIn = async () =>{
+     try{
+       
+      await handleSign();
 
-   const handleSignIn = () => navigation.navigate("Home")
+     }catch(error:any){
+        Alert.alert(error); 
+     }
 
-   
-
+  }
+  
    return (
       <Container>
          <ImageBackGround source={illustrutation}   />
@@ -25,7 +39,14 @@ const Sign = () => {
             <Subtitles style={{fontFamily: Theme.fonts.text400,lineHeight:25 }} > 
               Crie grupos para jogar seus games favoritos com seus amigos
             </Subtitles>
-            <ButtonIcon rippleColor="#fff"  onPress={handleSignIn}  title="Entrar com discord" />
+            {
+               loading?
+                
+               <ActivityIndicator  color={Theme.colors.primary} />  
+               :
+               <ButtonIcon rippleColor="#fff"  onPress={handleSignIn}  title="Entrar com discord" />
+            }
+           
          </Content>
       </Container>
    );

@@ -25,6 +25,10 @@ export const UserName = styled.Text`
 `;
 
 export const Mensagem = styled.Text`
+  flex-wrap: wrap;
+  text-align: left;
+  padding: 0 2px;
+  width: 90%;
   font-family: ${Theme.fonts.text400};
   color: ${Theme.colors.highlight};
 `;

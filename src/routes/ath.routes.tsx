@@ -18,7 +18,6 @@ const AthRoutes = () =>(
       }}   
       
     >
-        <Screen name="SignIn" component={Sign}  />
         <Screen name="Home" component={HomeScreen}  />
         <Screen name="AppointmentDetails" component={AppointmentDetails} />  
         <Screen name="AppointmentCreate" component={AppointmentCreate} />            

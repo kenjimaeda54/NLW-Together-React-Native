@@ -3,6 +3,7 @@
     "name": "nlw-together",
     "slug": "nlw-together",
     "version": "1.0.0",
+    "scheme": "nlw-together",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -44,5 +45,6 @@
         "svg"
       ]
     }
+    
   }
 }
