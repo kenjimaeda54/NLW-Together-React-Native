@@ -1,5 +1,5 @@
 Arguments: 
-  /home/erika/.nvm/versions/node/v15.14.0/bin/node /home/erika/.nvm/versions/node/v15.14.0/bin/yarn add expo -g cli ~4.7.2
+  /home/erika/.nvm/versions/node/v15.14.0/bin/node /home/erika/.nvm/versions/node/v15.14.0/bin/yarn add dotenv babel-plugin-inline-dontev
 
 PATH: 
   /home/erika/.nvm/versions/node/v15.14.0/bin:/home/erika/.local/bin:/home/erika/bin:/home/erika/.local/bin:/home/erika/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-11-openjdk-amd64/bin/java:/home/erika/bin:/home/erika/Android/Sdk/tools:/home/erika/Android/Sdk/tools:/home/erika/Android/Sdk/platform-tools:/home/erika/Android/Sdk/emulator:/home/erika/Android/Sdk/tools:/home/erika/Android/Sdk/tools/bin:/home/erika/Android/Sdk/platform-tools:/usr/lib/jvm/java-11-openjdk-amd64/bin/java:/home/erika/bin:/home/erika/Android/Sdk/tools:/home/erika/Android/Sdk/tools:/home/erika/Android/Sdk/platform-tools:/home/erika/Android/Sdk/emulator:/home/erika/Android/Sdk/tools:/home/erika/Android/Sdk/tools/bin:/home/erika/Android/Sdk/platform-tools
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/~4.7.2: Not found
+  Error: https://registry.yarnpkg.com/babel-plugin-inline-dontev: Not found
       at Request.params.callback [as _callback] (/home/erika/.nvm/versions/node/v15.14.0/lib/node_modules/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/home/erika/.nvm/versions/node/v15.14.0/lib/node_modules/yarn/lib/cli.js:140662:22)
       at Request.emit (node:events:369:20)

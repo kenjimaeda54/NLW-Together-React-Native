@@ -1,8 +1,8 @@
 import React from 'react'
 import { NavigationContainer } from "@react-navigation/native" ;
-import { useAth } from "../hooks/auth"
-import AthRoutes from './ath.routes'
+import { useAth } from "../hooks/auth";
 import Sign from '../screen/sign-in';
+import AppRoutes from './app.routes';
 
 
 const Routes = () => {
@@ -10,7 +10,7 @@ const Routes = () => {
 
     return (
         <NavigationContainer>
-           {user.id?  <AthRoutes/>   :  <Sign/>  }      
+           {user.id?  <AppRoutes/>   :  <Sign/>  }      
         </NavigationContainer>  
     );
 }

@@ -2,12 +2,13 @@ import React from 'react';
 import { SafeAreaView  } from "react-native-safe-area-context";
 import { useFonts,Inter_400Regular,Inter_500Medium  } from "@expo-google-fonts/inter"
 import { Rajdhani_500Medium, Rajdhani_700Bold  } from "@expo-google-fonts/rajdhani"
-import { StatusBar } from 'react-native';
+import { StatusBar,LogBox } from 'react-native';
 import  {AuthProvider} from "./src/hooks/auth"
 import AppLoading from 'expo-app-loading';
 import Background from './src/components/background';
 import Routes from './src/routes';
 
+LogBox.ignoreLogs(['Expected style "paddingTop: 29.090909957885742" to contain units'])
 
 const App = () => {
   const [loading] = useFonts({
