@@ -8,7 +8,7 @@ import AppointmentCreate from '../screen/appoint-create';
 
 const {Navigator,Screen  } = createStackNavigator();
 
-const AthRoutes = () =>( 
+const AppRoutes = () =>( 
     <Navigator
       headerMode="none"
       screenOptions={{
@@ -24,4 +24,4 @@ const AthRoutes = () =>(
     </Navigator>     
 );
 
-export default AthRoutes
+export default AppRoutes

@@ -14,10 +14,9 @@ const ButtonAdd:React.FC<RectButtonProps> = ({...rest}) => (
             backgroundColor: Theme.colors.primary,
             borderRadius: 8,
             alignItems: 'center',
-            justifyContent: 'center',
-            marginLeft: -50,
-
-
+            marginLeft: -300,
+            justifyContent:'center',
+            marginTop:9,
     }}
     
     >

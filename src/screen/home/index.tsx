@@ -61,6 +61,7 @@ const HomeScreen = () => {
       <CategorySelected 
          setCategory={handleCategorySelected}
          categorySelected={categorySelected}
+          
       />
         <ListHeader 
            title="Partidas Agendadas"

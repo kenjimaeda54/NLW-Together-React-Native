@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons"
-import CategorySelected from '../../components/category-select';
-import Header from "../../components/header";
 import { Theme } from '../../global/theme';
 import { Platform, ScrollView } from "react-native"
+import { View } from 'react-native';
+import { IGuildProps } from '../../components/guild';
+import { Collection_Appointment } from '../../configs/database';
+import { useNavigation } from '@react-navigation/core';
+import CategorySelected from '../../components/category-select';
+import Header from "../../components/header";
+import SmallInput from '../../components/small-input';
+import TextAreaInput from '../../components/text-area-input';
+import Button from "../../components/button"
+import ModalView from '../../components/modal-view';
+import Guilds from '../guilds';
+import GuildIcon from '../../components/guild-icon';
+import uuid from "react-native-uuid"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   ViewForm,
   ViewContentButton,
@@ -18,19 +30,17 @@ import {
   KeyboardContainer,
   ViewFooter
 } from "./style"
-import { View } from 'react-native';
-import SmallInput from '../../components/small-input';
-import TextAreaInput from '../../components/text-area-input';
-import Button from "../../components/button"
-import ModalView from '../../components/modal-view';
-import Guilds from '../guilds';
-import { IGuildProps } from '../../components/guild';
-import GuildIcon from '../../components/guild-icon';
 
 const AppointCreate = () => {
+  const navigation = useNavigation();
   const [categorySelected, setCategorySelected] = useState('');
   const [openModalGuild,setOpenModalGuild] = useState(false);
-  const [guild,setGuild] = useState<IGuildProps>({} as IGuildProps)
+  const [guild,setGuild] = useState<IGuildProps>({} as IGuildProps);
+  const [day,setDay] = useState('');
+  const [month,setMonth] = useState('');
+  const [hour,setHour] = useState('');
+  const [minute,setMinute] = useState('');
+  const [description,setDescription] = useState('')
   
   const handleCategorySelected = (categoryId:string) =>{
      setCategorySelected(categoryId)
@@ -45,6 +55,26 @@ const AppointCreate = () => {
   }
 
   const handleCloseModal = () => setOpenModalGuild(false);
+
+  const handleSave = async () => {
+     const newAppointment = {
+         uid: uuid.v4,
+         guild,
+         categorySelected,
+         date: `${day}/${month} as ${hour}:${minute}h`,
+         description,
+     }
+     const storage = await AsyncStorage.getItem(Collection_Appointment);
+     const appointment = storage? JSON.parse(storage) : []; 
+     /*tenta deixar a variável semântico do JSON.parse se a ideia e 
+     pegar uma coleção de users ,então user */
+     AsyncStorage.setItem(Collection_Appointment,JSON.stringify([
+          ...appointment,
+           newAppointment,
+      ]));
+      navigation.navigate('Home');
+       
+  }
    
     return (
     <KeyboardContainer
@@ -70,9 +100,10 @@ const AppointCreate = () => {
             <RectButton onPress={handleOpenGuild} >
                <ViewContentButton>
                   {
-                    
-                    guild.icon? <GuildIcon /> : <ViewImg/>
-
+                    guild.icon? 
+                    <GuildIcon guildId={guild.id} guildIcon={guild.icon} /> 
+                    : 
+                    <ViewImg/>
                   }
                   <ViewText>
                      <TextLabel>
@@ -100,12 +131,14 @@ const AppointCreate = () => {
                <ViewCalendar>
                   <SmallInput  
                      maxLength={2} /*máximo de carácter */
+                     onChangeText={setDay}
                   />
                   <TextDivide>
                     /
                   </TextDivide>
                   <SmallInput  
                      maxLength={2} /*máximo de carácter */
+                     onChangeText={setMonth}
                   />
                </ViewCalendar>   
              </View>
@@ -116,12 +149,14 @@ const AppointCreate = () => {
                <ViewCalendar>
                   <SmallInput  
                      maxLength={2} /*máximo de carácter */
+                     onChangeText={setHour}
                   />
                   <TextDivide>
                     :
                   </TextDivide>
                   <SmallInput  
                      maxLength={2} /*máximo de carácter */
+                     onChangeText={setMinute}
                   />
                </ViewCalendar>   
              </View>
@@ -139,10 +174,12 @@ const AppointCreate = () => {
              autoCorrect={false}
              numberOfLines={5}
              maxLength={100}
+             onChangeText={setDescription}
           />
           <ViewFooter>
              <Button  
                title="Agendar"
+               onPress={handleSave}
              />
           </ViewFooter> 
        </ScrollView>

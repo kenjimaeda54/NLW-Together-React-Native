@@ -1,37 +1,38 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React,{useState,useEffect} from 'react'
 import Guild, { IGuildProps } from '../../components/guild'
 import ListSplit from '../../components/list-split'
+import Loading from '../../components/loader'
+import api from '../../services/api'
 import { ListGuild,Container } from "./style"
-
-
 
 interface IGuildsProps{
   guildSelected:(guild: IGuildProps  )=>void 
 }
 
-
 const Guilds:React.FC<IGuildsProps> = ({guildSelected}) => {
-    const dataGuild =[
-    {
-        id:'1',
-        name:'Lendários',
-        icon:null,
-        owner: true,
-            
-    },
-    {
-        id:'2',
-        name:'Imaginários',
-        icon:'img.png',
-        owner: true,
-    },
-  
-   ]
-
+    const [dataGuild,setDataGuild] = useState<IGuildProps[]>([]);
+    const [loading,setLoading] = useState(true);
+    
+    const loadGuild = async () =>{
+      try{
+         const loadGuild = await api.get('/users/@me/guilds');  
+         setDataGuild(loadGuild.data)
+         setLoading(false);
+      }catch(error){
+        
+        alert(error);
+      }
+    }
+     useEffect(()=>{
+      loadGuild()
+     },[])
+       
     return (
       <Container>  
-        <ListGuild 
+         {loading?
+           <Loading/>
+           :
+           <ListGuild 
            data={dataGuild}
            keyExtractor={(item:any)=> item.id}
            renderItem={({item}:any)=> 
@@ -45,8 +46,8 @@ const Guilds:React.FC<IGuildsProps> = ({guildSelected}) => {
            /*aplicando paddingTop minha lista começa com 104  e conforme rola */ 
            /* some o espaço  */  
         />
+        }      
       </Container>  
     )
 }
-
-export default Guilds
+export default Guilds;

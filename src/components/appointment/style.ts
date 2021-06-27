@@ -14,6 +14,7 @@ export const Container = styled.View`
 
 export const ViewContent = styled.View`
   flex: 1;
+  margin: 0 8px;
 `;
 
 export const ViewHeader = styled.View`

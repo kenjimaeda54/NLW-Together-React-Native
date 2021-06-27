@@ -43,7 +43,7 @@ const Appointment:React.FC<Data> = ({data,...rest}) => {
     return (
         <RectButton {...rest}  >
            <Container> 
-               <GuildIcon /> 
+               <GuildIcon   /> 
                <ViewContent>
                   <ViewHeader>
                      <TextTitle>

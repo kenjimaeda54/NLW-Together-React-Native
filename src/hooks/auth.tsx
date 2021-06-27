@@ -2,6 +2,9 @@ import React,{useContext,createContext,useState,ReactNode, useEffect, useMemo} f
 import * as AuthSession from 'expo-auth-session';
 import {frases} from "../util/lista-frases";
 import api from "../services/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Collection_User } from "../configs/database";
+import { parse } from "yargs";
 
 const {CDN_IMAGE} = process.env;
 const {CLIENT_ID} = process.env;
@@ -69,7 +72,7 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
           /*este caminho '/users/@me esta na documentação */
 
           const firstName =  responseInfo.data.username.split(' ')[0];
-          /* transforma Rodrigo Carvalho em ['Rodrigo', 'Caravalho'] */
+          /* transforma Rodrigo Carvalho em ['Rodrigo', 'Carvalho'] */
           /*caso nome do usuario for composto, com  retorna o primeiro, cuidado precisa do espaço */        
           responseInfo.data.avatar = `${CDN_IMAGE}/avatars/${responseInfo.data.id}/${responseInfo.data.avatar}.png`
           /* formatando o avatar para um cnd*/
@@ -78,12 +81,14 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
               "avatar": "hasAvatar"
               "username": "nome do usuario"
           }  */
-          
-          setUser({
+          const DataBaseUser = {
             ...responseInfo.data,/*vou copiar meu objeto para aqui dentro */
             firstName,
-            token: params.access_token
-          })
+            token: params.access_token     
+
+          }         
+          await AsyncStorage.setItem(Collection_User,JSON.stringify(DataBaseUser));
+          setUser(DataBaseUser)
         
        }
       }catch(error){
@@ -92,8 +97,24 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
        
       }finally{
         setLoading(false);
+        /*o finally e ideal quando deseja eliminar o load ou seja
+        independente se deu certo ou errado vai ser falso */
       } 
     }
+     
+    const loadData = async () =>{
+        const getStorage = await AsyncStorage.getItem(Collection_User); 
+        if( getStorage ){
+           const loadData = JSON.parse(getStorage) as IUser;
+           api.defaults.headers.authorization = `Bearer ${loadData.token}`
+           /*cuidado com os espaços Bearer ${loadData.token} sem espaço por ser string
+           concatena é o token não pode  */
+           setUser(loadData);
+        }
+    }
+    useEffect(()=>{
+      loadData();
+    })
 
     return(
       <AuthContext.Provider value={{user,handleSign,loading,randomPhrases}} >

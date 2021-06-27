@@ -1,13 +1,30 @@
 import React from 'react'
-import { ImageProfile} from "./style"
+import {Container, ImageProfile} from "./style"
+import Discord from "../../assets/discord.svg";
+const {CDN_IMAGE} = process.env;
+interface IGuildIcon {
+    guildId: string,
+    guildIcon: string | null,
+}
 
-const GuildIcon = () => {
-    const uri = 'https://gamerssuffice.com/wp-content/uploads/2019/11/How-to-add-bots-to-discord-500x405.jpg';
-    return (
-       <ImageProfile 
-        source={{uri}}
-        resizeMode="cover" 
-       />
+const GuildIcon:React.FC<IGuildIcon> = ({guildId,guildIcon}) => {
+    const uri = `${CDN_IMAGE}/icons/${guildId}/${guildIcon}.png`
+    
+     return (
+      <Container>
+       {guildId? 
+          <ImageProfile 
+            source={{uri}}
+            resizeMode="cover" 
+          />
+          :
+          <Discord 
+             width='48'
+             height="48"
+          /> 
+
+       }
+      </Container>         
     )
 }
 
