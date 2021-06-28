@@ -9,7 +9,7 @@ import {
 } from "./style";
 import Avatar from '../avatar'
 
-interface IMemberProps{
+export interface IMemberProps{
     id:string;
     username: string;
     avatar_url:string;

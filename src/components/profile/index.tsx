@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View} from 'react-native';
 import { Container,ViewUser,Greeting,UserName,Mensagem } from './style';
 import { useAth } from "../../hooks/auth"
 import Avatar from '../avatar';

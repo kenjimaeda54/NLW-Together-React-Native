@@ -1,56 +1,51 @@
-
-import React,{useState} from 'react';
-import { View, Text } from 'react-native';
+import React,{useState,useCallback } from 'react';
 import { Container, ViewHeader,ListMatch } from "./styles";
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation,useFocusEffect } from "@react-navigation/native"
+import {Collection_Appointment} from "../../configs/database"
+import Appointment, { IAppointmentProps } from '../../components/appointment';
 import ButtonAdd from '../../components/button-add';
 import Profile from '../../components/profile';
 import CategorySelected from '../../components/category-select';
 import ListHeader from '../../components/list-header';
-import Appointment from '../../components/appointment';
 import ListSplit from '../../components/list-split';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Loading from '../../components/loader';
 
 const HomeScreen = () => {
-  const [categorySelected, setCategorySelected] = useState('');
+  const [category, setCategorySelected] = useState('');
+  const [appointments,setAppointments] = useState<IAppointmentProps[]>([]);
+  const [loading,setLoading] = useState(true);
   const navigation = useNavigation();
-
-  const appointments = [
-    {
-      id: '1',
-      guild: {
-        id: '1',
-        name: 'Lendários',
-        icon: null,
-        owner: true
-      },
-      category: '1',
-      date: '22/06 às 20:40h',
-      description: 'É hoje que vamos chegar ao challenger sem perder uma partida da md10'      
-    },
-    {
-      id: '2',
-      guild: {
-        id: '1',
-        name: 'Lendários',
-        icon: null,
-        owner: true
-      },
-      category: '1',
-      date: '22/06 às 20:40h',
-      description: 'É hoje que vamos chegar ao challenger sem perder uma partida da md10'      
-    },
   
-  
-  ]
-
   const handleCategorySelected = (categoryId:string) =>{
-    categoryId === categorySelected? setCategorySelected('') : setCategorySelected(categoryId)
+    categoryId === category? setCategorySelected('') : setCategorySelected(categoryId)
   }
    
-  const handleAppointmentDetails = () => navigation.navigate("AppointmentDetails");
-  
+  const handleAppointmentDetails = (guildSelected:IAppointmentProps ) => 
+  navigation.navigate("AppointmentDetails",{guildSelected});
+  /*passando parâmetros via rotas */
+
   const handleAppointCreate = () => navigation.navigate("AppointmentCreate"); 
+  
+  const handleLoadStorage = async () =>{
+  
+    const response  =  await AsyncStorage.getItem(Collection_Appointment);
+    const fetchAppointment:IAppointmentProps[] = response? JSON.parse(response) : [];
+    /* e preciso tipa AppointmentProps como [] ou senão seria possível fazer map
+    e percorrer no objeto */
+    if(category){
+      const filterGuild =  fetchAppointment.filter(value=> value.category === category)
+      setAppointments(filterGuild);
+    }else{
+      setAppointments(fetchAppointment);
+    }
+    setLoading(false);
+  }
+    /*useFocus e ideal quando desejo  retorna a tela é a mesma
+    seja novamente montada,useEfect não faz isso*/
+    useFocusEffect(useCallback(()=>{
+      handleLoadStorage()
+    },[category]));
 
   return (
     <Container>
@@ -60,22 +55,23 @@ const HomeScreen = () => {
       </ViewHeader>
       <CategorySelected 
          setCategory={handleCategorySelected}
-         categorySelected={categorySelected}
-          
+         categorySelected={category}       
       />
+      {loading? 
+      <Loading />
+        :
+        <React.Fragment> 
         <ListHeader 
            title="Partidas Agendadas"
-           subtitles="6"
+           subtitles={`Total ${appointments.length}`}
         />
-        {/* lista precisa estar fora de uma view para funcionar bem */}
+        {/*lista precisa estar fora de uma view para funcionar bem */} 
         <ListMatch 
-            data={appointments}
-            keyExtractor={(item:string | any) => item.id }
+            data={appointments} 
+            keyExtractor={(item: any) => item.id }
             renderItem={({item}:any)   => (
-              <Appointment data={item}
-                
-               onPress={handleAppointmentDetails}
-              
+              <Appointment data={item}                
+               onPress={() =>  handleAppointmentDetails(item)}
               />
             )}
             ItemSeparatorComponent={()=> <ListSplit /> } 
@@ -83,7 +79,9 @@ const HomeScreen = () => {
             contentContainerStyle={{paddingBottom:69}}
             /* contentContainerStyle aplico estilo interno na lista */
             showsVerticalScrollIndicator={false}
-        /> 
+        />
+        </React.Fragment>            
+      }
     </Container>
   )
 }

@@ -1,4 +1,9 @@
 import React from 'react';
+import { Theme } from '../../global/theme';
+import { useAth } from "../../hooks/auth"
+import illustrutation from "../../assets/illustration.png"
+import ButtonIcon from '../../components/button-icon/button-icon';
+import { Alert,ActivityIndicator } from 'react-native';
 import { 
    Container, 
    ImageBackGround, 
@@ -6,12 +11,6 @@ import {
    Subtitles,
    Content 
 } from "./styles";
-import { Theme } from '../../global/theme';
-import { useAth } from "../../hooks/auth"
-import illustrutation from "../../assets/illustration.png"
-import ButtonIcon from '../../components/button-icon/button-icon';
-import { Alert,ActivityIndicator } from 'react-native';
-
 
 const Sign = () => {
   const {handleSign,loading } = useAth();
@@ -26,7 +25,7 @@ const Sign = () => {
      }
 
   }
-  
+
    return (
       <Container>
          <ImageBackGround source={illustrutation}   />

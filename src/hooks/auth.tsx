@@ -4,7 +4,7 @@ import {frases} from "../util/lista-frases";
 import api from "../services/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Collection_User } from "../configs/database";
-import { parse } from "yargs";
+
 
 const {CDN_IMAGE} = process.env;
 const {CLIENT_ID} = process.env;
@@ -61,7 +61,7 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
         setLoading(true);
         const authUrl = `${api.defaults.baseURL}/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${SCOPE}`
         const { params,type } = await AuthSession.startAsync({authUrl}) as DataParams;
-        
+      
          if( type === 'success' && !params.error){
           /*vai retornar um objeto,com token e status, se  status for success entro aqui   
           se caso também não houver nenhum parâmetro de error ,entra aqui*/ 
@@ -74,7 +74,7 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
           const firstName =  responseInfo.data.username.split(' ')[0];
           /* transforma Rodrigo Carvalho em ['Rodrigo', 'Carvalho'] */
           /*caso nome do usuario for composto, com  retorna o primeiro, cuidado precisa do espaço */        
-          responseInfo.data.avatar = `${CDN_IMAGE}/avatars/${responseInfo.data.id}/${responseInfo.data.avatar}.png`
+          responseInfo.data.avatar =`${CDN_IMAGE}/avatars/${responseInfo.data.id}/${responseInfo.data.avatar}.png`
           /* formatando o avatar para um cnd*/
           /*este caminho esta na documentação seria CDN/avatars/objeto.id/objeto.avatar */
           /* responseInfo retorna um objeto data:{
@@ -92,7 +92,6 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
         
        }
       }catch(error){
-        console.log(error)
          throw new Error("Não foi possível autenticar")
        
       }finally{

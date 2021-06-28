@@ -16,28 +16,30 @@ interface IDataProps extends  TouchableOpacityProps{
   data: IGuildProps; 
 }
 
-const Guild:React.FC<IDataProps> = ({data,...rest}) => (
-    <ButtonContainer
-        activeOpacity={0.7}
-        {...rest}
-    >
-    <GuildIcon guildId={data.id} guildIcon={data.icon}   />    
-    <ViewContent>
-        <View>
-        <TextName>
-            {data.name  }
-        </TextName> 
-        <TextOwner>
-            {data.owner? 'Admin' : 'Convidado'}
-        </TextOwner>
-       </View>
-    </ViewContent>
-    <Feather 
-       name="chevron-right"
-       color={Theme.colors.heading}
-       size={24}
-    />
-    </ButtonContainer>
-)
-
+const Guild:React.FC<IDataProps> = ({data,...rest}) => {
+   /*cuidado componentes puros são filhos não passam propriedades */
+   return (
+      <ButtonContainer
+          activeOpacity={0.7}
+          {...rest}
+      >
+     <GuildIcon guildId={data.id} guildIcon={data.icon}   />    
+      <ViewContent>
+          <View>
+          <TextName>
+              {data.name  }
+          </TextName> 
+          <TextOwner>
+              {data.owner? 'Admin' : 'Convidado'}
+          </TextOwner>
+          </View>
+     </ViewContent>
+      <Feather 
+          name="chevron-right"
+          color={Theme.colors.heading}
+          size={24}
+      />
+   </ButtonContainer>
+   )
+}
 export default Guild

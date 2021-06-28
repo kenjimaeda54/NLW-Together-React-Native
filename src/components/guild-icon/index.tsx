@@ -9,7 +9,7 @@ interface IGuildIcon {
 
 const GuildIcon:React.FC<IGuildIcon> = ({guildId,guildIcon}) => {
     const uri = `${CDN_IMAGE}/icons/${guildId}/${guildIcon}.png`
-    
+
      return (
       <Container>
        {guildId? 

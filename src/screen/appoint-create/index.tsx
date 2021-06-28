@@ -33,7 +33,7 @@ import {
 
 const AppointCreate = () => {
   const navigation = useNavigation();
-  const [categorySelected, setCategorySelected] = useState('');
+  const [category, setCategory] = useState('');
   const [openModalGuild,setOpenModalGuild] = useState(false);
   const [guild,setGuild] = useState<IGuildProps>({} as IGuildProps);
   const [day,setDay] = useState('');
@@ -43,7 +43,7 @@ const AppointCreate = () => {
   const [description,setDescription] = useState('')
   
   const handleCategorySelected = (categoryId:string) =>{
-     setCategorySelected(categoryId)
+   setCategory(categoryId)
   }
   
   const handleOpenGuild = () =>  setOpenModalGuild(true);
@@ -55,27 +55,25 @@ const AppointCreate = () => {
   }
 
   const handleCloseModal = () => setOpenModalGuild(false);
-
-  const handleSave = async () => {
-     const newAppointment = {
-         uid: uuid.v4,
-         guild,
-         categorySelected,
-         date: `${day}/${month} as ${hour}:${minute}h`,
-         description,
-     }
-     const storage = await AsyncStorage.getItem(Collection_Appointment);
-     const appointment = storage? JSON.parse(storage) : []; 
-     /*tenta deixar a variável semântico do JSON.parse se a ideia e 
-     pegar uma coleção de users ,então user */
-     AsyncStorage.setItem(Collection_Appointment,JSON.stringify([
-          ...appointment,
-           newAppointment,
-      ]));
-      navigation.navigate('Home');
-       
-  }
    
+   const handleSave = async () => {
+      const newAppointment = {
+         id: uuid.v4(),
+         category,
+         guild,
+         date: `${day}/${month} as ${hour}:${minute}h `,
+         description
+      }
+      const fetchStorage = await AsyncStorage.getItem(Collection_Appointment);
+      const appointment = fetchStorage? JSON.parse(fetchStorage) : [];
+      /*com if ternário estou garantido que não vou sobrescrever valores
+      que estão salvos com essa chave  Collection_Appointment*/
+     AsyncStorage.setItem(Collection_Appointment,JSON.stringify([
+        ...appointment,
+         newAppointment,
+     ]));
+     navigation.navigate('Home');
+   }
     return (
     <KeyboardContainer
        behavior= {
@@ -93,7 +91,7 @@ const AppointCreate = () => {
           Categoria  </TextLabel>  
           <CategorySelected 
             setCategory={handleCategorySelected}
-            categorySelected={categorySelected}
+            categorySelected={category}
             hasCheckBox={true}
           />  
           <ViewForm>

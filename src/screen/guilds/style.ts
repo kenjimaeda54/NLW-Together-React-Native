@@ -5,7 +5,3 @@ export const Container = styled.View`
   align-items: center;
   padding-top: 24px;
 `;
-
-export const ListGuild = styled.FlatList`
-  width: 100%;
-`;

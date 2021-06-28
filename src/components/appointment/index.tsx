@@ -34,8 +34,6 @@ interface Data extends RectButtonProps  {
 }
 
 const Appointment:React.FC<Data> = ({data,...rest}) => {
-   const { secondary50,secondary70  } = Theme.colors;
-
    const [category] =  CategoryList.filter(item=>  item.id === data.category )
    const { owner } = data.guild;
    const {primary, on  } = Theme.colors;
@@ -43,7 +41,7 @@ const Appointment:React.FC<Data> = ({data,...rest}) => {
     return (
         <RectButton {...rest}  >
            <Container> 
-               <GuildIcon   /> 
+               <GuildIcon  guildIcon={data.guild.icon} guildId={data.guild.id} /> 
                <ViewContent>
                   <ViewHeader>
                      <TextTitle>
