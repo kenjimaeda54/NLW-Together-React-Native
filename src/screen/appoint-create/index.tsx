@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RectButton } from "react-native-gesture-handler";
 import { Feather } from "@expo/vector-icons"
 import { Theme } from '../../global/theme';
-import { Platform, ScrollView } from "react-native"
+import { Alert, Platform, ScrollView } from "react-native"
 import { View } from 'react-native';
 import { IGuildProps } from '../../components/guild';
 import { Collection_Appointment } from '../../configs/database';
@@ -63,6 +63,18 @@ const AppointCreate = () => {
          guild,
          date: `${day}/${month} as ${hour}:${minute}h `,
          description
+      }
+      if(category  === '' || day === '' || month === '' || hour === '' || minute === '' 
+         || typeof category === 'undefined'){
+           return Alert.alert('Atenção','Precisa preencher os campos: horário,data é categoria para agendar',
+                [
+                   { 
+                     text:"OK",
+                     style: 'cancel',
+                     
+                   }
+                ]
+           ) 
       }
       const fetchStorage = await AsyncStorage.getItem(Collection_Appointment);
       const appointment = fetchStorage? JSON.parse(fetchStorage) : [];

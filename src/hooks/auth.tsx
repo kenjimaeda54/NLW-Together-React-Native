@@ -25,6 +25,7 @@ interface IUser{
 interface IDataProps {
    user: IUser 
    handleSign: () => Promise<void>;
+   handleSignOut: () => void;
    loading:boolean;
    randomPhrases: string;
 }
@@ -101,6 +102,11 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
       } 
     }
      
+    const handleSignOut = async () => {
+       setUser({} as IUser)
+       await  AsyncStorage.removeItem(Collection_User);
+    }
+
     const loadData = async () =>{
         const getStorage = await AsyncStorage.getItem(Collection_User); 
         if( getStorage ){
@@ -115,8 +121,10 @@ const AuthProvider:React.FC<IChildrenProps> = ({children}) =>{
       loadData();
     })
 
+  
+
     return(
-      <AuthContext.Provider value={{user,handleSign,loading,randomPhrases}} >
+      <AuthContext.Provider value={{user,handleSign,handleSignOut,loading,randomPhrases}} >
            {children}
       </AuthContext.Provider> 
 

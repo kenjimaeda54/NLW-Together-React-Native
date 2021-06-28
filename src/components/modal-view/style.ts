@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { Modal } from "react-native";
 import { Theme } from "../../global/theme";
 
 export const ViewContent = styled.View`

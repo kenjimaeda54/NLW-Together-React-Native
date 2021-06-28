@@ -23,7 +23,7 @@ interface DataProps{
 }
 
 const Member:React.FC<DataProps> = ({data}) => {
-    const isOnline = data.status === 'disponível'
+    const isOnline = data.status === 'online'
 
     return (
         <Container>

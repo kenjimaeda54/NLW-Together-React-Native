@@ -1,7 +1,9 @@
 import styled from "styled-components/native";
 import { Theme } from "../../global/theme";
+import { Modal } from "react-native";
 
 export const Container = styled.View`
+  flex: 1;
   flex-direction: row; /*por padrão em react native e column */
   align-items: center;
 `;

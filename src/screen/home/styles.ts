@@ -18,3 +18,13 @@ export const ListMatch = styled.FlatList`
   margin-top: 27px;
   margin-left: 24px;
 `;
+
+export const ModalLogout = styled.Modal`
+  position: absolute;
+  bottom: 0;
+  flex: 1;
+  height: 127px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`;

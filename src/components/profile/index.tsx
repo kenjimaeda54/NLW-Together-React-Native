@@ -1,15 +1,36 @@
-import React from 'react';
-import { View} from 'react-native';
-import { Container,ViewUser,Greeting,UserName,Mensagem } from './style';
+import React,{useState} from 'react';
+import { View,Text, Alert  } from 'react-native';
+import { BorderlessButton } from "react-native-gesture-handler"
+import { Container,ViewUser,Greeting,UserName,Mensagem} from './style';
 import { useAth } from "../../hooks/auth"
 import Avatar from '../avatar';
 
-const Profile = () => {
-   const { user,randomPhrases } = useAth()
 
+
+const Profile:React.FC = () => {
+   const { user,randomPhrases,handleSignOut } = useAth();
+   
+   const handleLogout = () =>{
+     Alert.alert('Sair','Deseja sair',
+     [
+       {
+         text:'Cancelar',
+         style:'cancel'
+
+       },
+       { 
+         text:'Sair?',
+         onPress: () => handleSignOut(),
+          
+       }
+     ])
+   }
+   
     return (
         <Container>
-           <Avatar uriImg={user.avatar} />
+           <BorderlessButton onPress={handleLogout} >
+              <Avatar uriImg={user.avatar} />
+           </BorderlessButton>   
            <View>  
              <ViewUser>
                <Greeting>
@@ -19,8 +40,8 @@ const Profile = () => {
                   {user.firstName}
                </UserName> 
            </ViewUser>
-               <Mensagem> {randomPhrases}  </Mensagem>       
-           </View>          
+               <Mensagem> {randomPhrases}  </Mensagem>         
+           </View>    
         </Container>
     )
 }

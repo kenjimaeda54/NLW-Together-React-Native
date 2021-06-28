@@ -6,7 +6,9 @@ import { useRoute } from '@react-navigation/native';
 import { Alert,Platform,Share } from "react-native"
 import Background from '../../components/background';
 import Header from "../../components/header";
-import Banner from "../../assets/banner.png"
+import Banner from "../../assets/banner.png";
+import * as Linking from "expo-linking"
+
 import { 
      BannerIgm,
      ViewContent,
@@ -70,15 +72,16 @@ const AppointmentDetails = () => {
    Share.share({
       message,
       url:widget.instant_invite,
-   })
-
-  }
+   })}
   
+   const handleGoServer = () => Linking.openURL(widget.instant_invite);
+
     return (
       <Background>
           <Header 
             title="Detalhes"
             action={
+               guildSelected.guild.owner &&
                <BorderlessButton onPress={shareGuild} >
                     <Fontisto
                        name="share"
@@ -120,11 +123,17 @@ const AppointmentDetails = () => {
               </React.Fragment>
 
             }
+
+            {guildSelected.guild.owner&&
+
+
              <ViewFooter>
                <ButtonIcon 
                   title="Entrar na partida"
+                  onPress={handleGoServer}
                />
              </ViewFooter>
+            }
 
       </Background>
     )
