@@ -189,7 +189,7 @@ interface IModalViewProps extends ModalProps{
 
  ```
 Reforcei a tenica de copiar  Arrays. Com ...appointement, estou copiando tudo que vem anterior </br>
-e colocando dentro do Async , assim não corro risco de sobescrerver dados que não desejo perrrder
+e colocando dentro do Async , assim não corro risco de sobescrerver dados que não desejo perder
  
  ```javascript
 const handleSave = async () => {
