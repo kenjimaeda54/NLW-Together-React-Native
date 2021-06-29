@@ -270,7 +270,7 @@ por fim com contentContainerStyle aplico estilos internos no Flatlist
   />
  
  ```
- Aprrendi adicionar parametros no cabeçario das minhas requisoções ja que estamos usando Auth 02,
+ Aprrendi adicionar parametros no cabeçalho das minhas requisoções ja que estamos usando Auth 02,
  
  ```javascript
   api.defaults.headers.authorization = `Bearer ${params.access_token} `;
@@ -314,7 +314,7 @@ export const Theme = {
 
 ```
 
-Uitlizamos customização no padrão do navigation stack,por padrõa vem alguns css setado e podem atraplhar aplicação</br>
+Uitlizamos customização no padrão do navigation stack,por padrão vem alguns css setado é podem atraplhar aplicação</br>
 Tambem foi separado rotas publicas das privadas 
 
 ```javascript 
@@ -370,8 +370,8 @@ const Background:React.FC<IBackgroundProps> = ({children}) => {
 }
 
 ```
-Por fim usar SVG as consigurações estão no projeto em metro.config.js</br>
-Se estiver usando type script precisa declarar no arquivo declartion.d.ts</br>
+Por fim usamos SVG, as consigurações estão no projeto em metro.config.js</br>
+Se estiver usando type script precisa declarar modulo SVG no arquivo declartion.d.ts</br>
 Por fim utilizar packagerOpts no seu app.json
 
 ```javascript
@@ -409,9 +409,6 @@ existe mais configurações vendo o proejeto e possivel entender
 "scheme": "nlw-together",
 
 ```
- 
- 
- 
  
  # Feature
   - Hooks
