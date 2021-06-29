@@ -210,9 +210,9 @@ AsyncStorage.setItem(Collection_Appointment,JSON.stringify([
  ]));
  }
  ```
-Mais tenicas de tipagem,determiando objetos vazios nas minhas constantes é exportando as minhas interfaces</br>
-Component Flatllist do React Native so renderiza vector,então uma tipagem interesante e usar o [] ao lado do objeto,
-deja renderizar
+Mais tenicas de tipagem,determiando objetos vazios nas minhas constantes é exportando as minhas interfaces.</br>
+O component Flatllist do React Native so renderiza vector,então utilizei outra tecnica de tipagem</br>
+ao colocar vetor( [] )ao lado do objeto. Mesmo transforma em um vetor
  
 ```javascript
 
