@@ -41,52 +41,6 @@ Fortalaleci os conhecimentos com [Aysnc Storage](https://docs.expo.io/versions/l
     }
 
  ~~~
-
-Aprendi a consumir de forma mais conciente APIs aplicando componsições de objetos para facilita trabalho.</br>
-Api retornava as chaves que estão na interface IWidget,dentro dela haviam as chaves de member</br>
-Dessa maneira consigo acessar todos os itens que gostaria de pegar</br>
-Repara que a constante widget recebe esses paremetros,então  ao setar com response, estou consumindo so estes parametros
- 
- ```javascript
-   
- interface IWidget{
-   id:string,
-   members:IMemberProps[],
-   presence_count: string,
-   name:string,
-   instant_invite: string,
-
-}
-
-export interface IMemberProps{
-    id:string;
-    username: string;
-    avatar_url:string;
-    status:string;
-}
-
-
-const AppointmentDetails = () => {
-  const [widget,setWidget ]  = useState<IWidget>({} as IWidget);
-
-  const fetchWidget = async () =>{
-   try {
-      const response = await api.get(`/guilds/${guildSelected.guild.id}/widget.json`); 
-      setWidget(response.data) 
-
-   } catch {
-     Alert.alert("Você precisa verificar o widget ")
-   }      
-   finally{
-       setLoading(false);
-   }
-
-  }
- 
- }
-  
-
- ```
  
 Uitilizei  rotas para passar alguns parmetros
  
