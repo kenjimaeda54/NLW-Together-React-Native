@@ -67,6 +67,37 @@ Uitilizei  rotas para passar alguns parmetros
  }
   
  ```
+ Aprendi tipagem de Api  </br>
+ Tipando assim as api consigo resgastar poor widget.id  </br>
+ Sem essa tipagem,type script não iria comprrender o tipo do widget ao efetuar widget.id.
+ 
+ 
+ ``` javascript
+ 
+interface IWidget{
+   id:string,
+   members:IMemberProps[],
+   presence_count: string,
+   name:string,
+   instant_invite: string,
+
+}
+
+const fetchWidget = async () =>{
+   try {
+      const response = await api.get(`/guilds/${guildSelected.guild.id}/widget.json`); 
+      setWidget(response.data) 
+
+}
+ 
+ 
+ 
+ ```
+ 
+ 
+ 
+ 
+ 
  Aprendi a usar o Auth 02  é  CND  do Discord para gerar o avatar dos usaurios</br>
  Usuei .env com GITIGNORE, assim as informações sensiveis do usuario não são disponibilizada no repositorio</br>
  Criei um srcipt das dependencias para funcionar o aplicativo
