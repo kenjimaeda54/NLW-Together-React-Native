@@ -114,8 +114,8 @@ Uitilizei  rotas para passar alguns parmetros
   
  ```
  Aprendi a usar o Auth 02  é  CND  do Discord para gerar o avatar dos usaurios</br>
- Usuei .env com GITIGNORE quardar as informações sensiveis do usuario e disponibilizar um srcipt </br>
- das dependencias para funcionar o aplicativo
+ Usuei .env com GITIGNORE, assim as informações sensiveis do usuario não são disponibilizada no repositorio</br>
+ Criei um srcipt das dependencias para funcionar o aplicativo
 
   ```javascript
   
