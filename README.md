@@ -132,7 +132,7 @@ Uitilizei  rotas para passar alguns parmetros
  
  
  ```
- Customizei propria alarme .
+ Customizei meu proprio alarme .
  
  ```javascript
  
