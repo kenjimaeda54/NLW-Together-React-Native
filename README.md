@@ -43,7 +43,7 @@ Fortalaleci os conhecimentos com [Aysnc Storage](https://docs.expo.io/versions/l
  ~~~
 
 Aprendi a consumir de forma mais conciente APIs aplicando componsições de objetos para facilita trabalho.</br>
-Api retornava as chaves que estão na interface IWWidget,dentro dela haviam as chaves de member</br>
+Api retornava as chaves que estão na interface IWidget,dentro dela haviam as chaves de member</br>
 Dessa maneira consigo acessar todos os itens que gostaria de pegar</br>
 Repara que a constante widget recebe esses paremetros,então  ao setar com response, estou consumindo so estes parametros
  
