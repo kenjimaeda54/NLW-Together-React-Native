@@ -246,10 +246,11 @@ export interface IGuildProps{
  />  
 
  ```
-Tecnica interesante com FLatlist e aplicar estillos internos na lista é inverterder,quando sua tela não ocupa</br>
-mais visualmente a lista,assim deixando em primeiro so os atuais.</br>
+Reforçando conhecimento  da FLatlist,aplicando estillos internos na lista é invertendo a lista,quando não cabe na tela.</br 
+assim deixando em primeiro so os atuais.</br>
 Utilizei itemSeparatorComponent para criar uma pequena linha entre os componentes renderizado é um espaçamento,</br>
-com a propriedade iverdeted,faço a inversão da lista nesse caso esta dinamico
+com a propriedade iverdeted,faço a inversão da lista nesse caso esta dinamico</br>
+por fim com contentContainerStyle aplico estilos internos no Flatlist
 
  ```javascript
    <ListMatch 
