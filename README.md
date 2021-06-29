@@ -421,7 +421,7 @@ existe mais configurações vendo o proejeto e possivel entender
 
 ## Dependencias
 - [Google fonts](https://fonts.google.com/)
-- [Expo fonts] (https://docs.expo.io/guides/using-custom-fonts/#using-a-google-font)
+- [Expo fonts](https://docs.expo.io/guides/using-custom-fonts/#using-a-google-font)
 - [Linear Gradiente](https://docs.expo.io/versions/latest/sdk/linear-gradient/)
 - [App Loading](https://docs.expo.io/versions/latest/sdk/app-loading/)
 - [React Navigation](https://reactnavigation.org/docs/getting-started/)
